@@ -1,15 +1,15 @@
-public class Courier {
+package org.praktikum.serialization;
+
+public class LoginCourier {
     private String login;
     private String password;
-    private String firstName;
 
-    public Courier() {
-    }
-
-    public Courier(String login, String password, String firstName) {
+    public LoginCourier(String login, String password) {
         this.login = login;
         this.password = password;
-        this.firstName = firstName;
+    }
+
+    public LoginCourier() {
     }
 
     public String getLogin() {
@@ -26,13 +26,5 @@ public class Courier {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 }

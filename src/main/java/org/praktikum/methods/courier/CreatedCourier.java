@@ -1,20 +1,23 @@
+package org.praktikum.methods.courier;
+
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
+import org.praktikum.serialization.Courier;
 
 import static io.restassured.RestAssured.given;
 
 public class CreatedCourier extends DataScooter {
-    private final String ENDPOINT_NEW_COURIER = "/api/v1/courier";
-    private final String login = "Good";
-    private final String password = "Qwerty";
-    private final String firstName = "Best";
+    private final static String ENDPOINT_NEW_COURIER = "/api/v1/courier";
+    private String login = "Good";
+    private String password = "Qwerty";
+    private String firstName = "Best";
 
     @Step("Создание курьера")
     public Response createdNewCourier() {
         Courier json = new Courier(login, password, firstName);
         return given()
                 .header("Content-type", "application/json")
-                .baseUri(MY_URL)
+                .baseUri(DataScooter.MY_URL)
                 .body(json)
                 .post(ENDPOINT_NEW_COURIER);
     }
@@ -24,7 +27,7 @@ public class CreatedCourier extends DataScooter {
         Courier json = new Courier(login, password, firstName);
         return given()
                 .header("Content-type", "application/json")
-                .baseUri(MY_URL)
+                .baseUri(DataScooter.MY_URL)
                 .body(json)
                 .post(ENDPOINT_NEW_COURIER);
     }

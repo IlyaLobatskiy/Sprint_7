@@ -1,3 +1,5 @@
+package org.praktikum.deserialization;
+
 public class IdCourier {
     private String id;
 

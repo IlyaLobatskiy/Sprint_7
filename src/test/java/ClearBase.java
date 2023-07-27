@@ -1,4 +1,6 @@
 import org.junit.After;
+import org.praktikum.methods.courier.Autorization;
+import org.praktikum.methods.courier.DeleteCourier;
 
 public class ClearBase {
     DeleteCourier del = new DeleteCourier();

@@ -3,15 +3,18 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.praktikum.methods.courier.Autorization;
+import org.praktikum.methods.courier.CreatedCourier;
 
+import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Parameterized.class)
 public class AuthorizationWithoutLoginAndPasswordTest extends ClearBase {
     Autorization autorization = new Autorization();
     CreatedCourier courier = new CreatedCourier();
-    private final String login;
-    private final String password;
+    private String login;
+    private String password;
 
     public AuthorizationWithoutLoginAndPasswordTest(String login, String password) {
         this.login = login;
@@ -29,10 +32,10 @@ public class AuthorizationWithoutLoginAndPasswordTest extends ClearBase {
     @Test
     @DisplayName("Авторизация курьера с невалидными данными")
     @Description("Проверяем, что курьер не может авторизоваться без логина или пароля")
-    public void authorizationNotParametersTest() {
+    public void authorizationCourierInvalidDataTest() {
         courier.createdNewCourier();
         autorization.autorizationCourierForNegativTests(login, password).then()
-                .assertThat().statusCode(400)
+                .assertThat().statusCode(SC_BAD_REQUEST)
                 .and()
                 .body("message", equalTo("Недостаточно данных для входа"));
     }

@@ -1,3 +1,5 @@
+package org.praktikum.serialization;
+
 public class Orders {
     private String firstName;
     private String lastName;

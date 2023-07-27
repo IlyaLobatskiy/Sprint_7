@@ -3,7 +3,9 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.praktikum.methods.courier.CreatedCourier;
 
+import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 @RunWith(Parameterized.class)
@@ -11,9 +13,9 @@ public class CreatingCourierDontRequiredFieldsTest extends ClearBase {
 
     CreatedCourier courier = new CreatedCourier();
 
-    private final String login;
-    private final String password;
-    private final String firstName;
+    private String login;
+    private String password;
+    private String firstName;
 
     public CreatingCourierDontRequiredFieldsTest(String login, String password, String firstName) {
         this.login = login;
@@ -35,7 +37,7 @@ public class CreatingCourierDontRequiredFieldsTest extends ClearBase {
     @Description("Попытка создать курьера с незаполнеными обязательными полями")
     public void createdCourierTest() {
         courier.creatingCourierDontRequiredFieldsTest(login, password, firstName)
-                .then().assertThat().statusCode(400)
+                .then().assertThat().statusCode(SC_BAD_REQUEST)
                 .and()
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
     }
